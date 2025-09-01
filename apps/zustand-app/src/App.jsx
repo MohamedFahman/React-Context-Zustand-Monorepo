@@ -3,7 +3,6 @@ import { ZustandTodoTitle } from "./components/ZustandTodoTitle";
 import { ZustandTodoList } from "./components/ZustandTodoList";
 
 function ZustandApp() {
-  // App now knows NOTHING about the store. It's just a layout.
   return (
     <div className="app" style={{ padding: "2rem", fontFamily: "sans-serif" }}>
       <h1>Zustand Todo App</h1>

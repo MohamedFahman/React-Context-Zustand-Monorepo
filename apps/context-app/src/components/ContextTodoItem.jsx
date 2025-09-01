@@ -1,8 +1,7 @@
 import { useRef, useState } from "react";
-import { RenderCounter } from "./RenderCounter";
-import { Button } from "./Button";
+import { RenderCounter, Button } from "@repo/ui";
 
-export const TodoItem = ({ item, onToggle, onDelete, onEdit }) => {
+export default function ContextTodoItem({ item, onToggle, onDelete, onEdit }) {
   const [isEditing, setIsEditing] = useState(false);
   const [editText, setEditText] = useState(item.text);
   const inputRef = useRef();
@@ -28,7 +27,7 @@ export const TodoItem = ({ item, onToggle, onDelete, onEdit }) => {
         backgroundColor: item.completed ? "#f0f0f0" : "white",
       }}
     >
-      <RenderCounter name={`TodoItem-${item.id}`} />
+      <RenderCounter name={`ContextTodoItem-${item.id}`} />
       <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
         <input
           type="checkbox"
@@ -44,15 +43,8 @@ export const TodoItem = ({ item, onToggle, onDelete, onEdit }) => {
               onChange={(e) => setEditText(e.target.value)}
               style={{ flex: 1, padding: "0.25rem" }}
             />
-            <Button onClick={handleSave} style={{ padding: "0.25rem 0.5rem" }}>
-              Save
-            </Button>
-            <Button
-              onClick={handleCancel}
-              style={{ padding: "0.25rem 0.5rem" }}
-            >
-              Cancel
-            </Button>
+            <Button onClick={handleSave}>Save</Button>
+            <Button onClick={handleCancel}>Cancel</Button>
           </>
         ) : (
           <>
@@ -64,18 +56,8 @@ export const TodoItem = ({ item, onToggle, onDelete, onEdit }) => {
             >
               {item.text}
             </span>
-            <Button
-              onClick={() => setIsEditing(true)}
-              style={{ padding: "0.25rem 0.5rem" }}
-            >
-              Edit
-            </Button>
-            <Button
-              onClick={() => onDelete(item.id)}
-              style={{ padding: "0.25rem 0.5rem" }}
-            >
-              Delete
-            </Button>
+            <Button onClick={() => setIsEditing(true)}>Edit</Button>
+            <Button onClick={() => onDelete(item.id)}>Delete</Button>
           </>
         )}
       </div>

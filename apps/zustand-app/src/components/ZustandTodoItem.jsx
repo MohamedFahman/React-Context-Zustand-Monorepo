@@ -1,9 +1,7 @@
 import { useRef, useState } from "react";
 import { RenderCounter, Button } from "@repo/ui";
 
-// We need a wrapper for TodoItem to make it "smart"
 export const ZustandTodoItem = ({ item, onToggle, onDelete, onEdit }) => {
-  // This component will only re-render if ITS specific item changes
   const [isEditing, setIsEditing] = useState(false);
   const [editText, setEditText] = useState(item.text);
   const inputRef = useRef();

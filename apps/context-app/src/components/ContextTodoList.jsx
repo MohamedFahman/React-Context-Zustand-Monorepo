@@ -1,15 +1,10 @@
 import { useRef } from "react";
 import { Button, RenderCounter } from "@repo/ui";
-import { useStore } from "../stores/store-zustand";
-import { ZustandTodoItem } from "./ZustandTodoItem";
+import { useStore } from "../stores/store-context";
+import ContextTodoItem from "./ContextTodoItem";
 
-export const ZustandTodoList = () => {
-  const items = useStore((state) => state.todoItems);
-  const addItem = useStore((state) => state.addItem);
-  const toggleItem = useStore((state) => state.toggleItem);
-  const deleteItem = useStore((state) => state.deleteItem);
-  const editItem = useStore((state) => state.editItem);
-
+export default function ContextTodoList() {
+  const { todoItems, addItem, toggleItem, deleteItem, editItem } = useStore();
   const inputRef = useRef();
 
   const handleSubmit = (e) => {
@@ -24,9 +19,10 @@ export const ZustandTodoList = () => {
   return (
     <div style={{ padding: "1rem", border: "2px solid #007bff" }}>
       <h3>
-        Todo Items ({items.filter((item) => !item.completed).length} remaining)
+        Todo Items ({todoItems.filter((item) => !item.completed).length}{" "}
+        remaining)
       </h3>
-      <RenderCounter name="ZustandTodoList" />
+      <RenderCounter name="ContextTodoList" />
 
       <form onSubmit={handleSubmit} style={{ marginBottom: "1rem" }}>
         <input
@@ -44,8 +40,8 @@ export const ZustandTodoList = () => {
       </form>
 
       <div>
-        {items.map((item) => (
-          <ZustandTodoItem
+        {todoItems.map((item) => (
+          <ContextTodoItem
             key={item.id}
             item={item}
             onToggle={toggleItem}
@@ -56,4 +52,4 @@ export const ZustandTodoList = () => {
       </div>
     </div>
   );
-};
+}

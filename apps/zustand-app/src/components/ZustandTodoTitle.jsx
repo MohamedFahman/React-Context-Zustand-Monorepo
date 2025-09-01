@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { RenderCounter,Button } from "@repo/ui";
+import { RenderCounter, Button } from "@repo/ui";
 import { useStore } from "../stores/store-zustand";
 
 export const ZustandTodoTitle = () => {
@@ -32,7 +32,11 @@ export const ZustandTodoTitle = () => {
           ref={inputRef}
           type="text"
           placeholder="Change list title..."
-          style={{ padding: "0.5rem", marginRight: "0.5rem" }}
+          style={{
+            padding: "0.5rem",
+            marginRight: "0.5rem",
+            border: "1px solid #007bff",
+          }}
         />
         <Button type="submit">Update Title</Button>
       </form>

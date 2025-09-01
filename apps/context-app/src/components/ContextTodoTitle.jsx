@@ -1,15 +1,16 @@
 import { useRef } from "react";
-import { RenderCounter } from "./RenderCounter";
-import { Button } from "./Button";
+import { RenderCounter, Button } from "@repo/ui";
+import { useStore } from "../stores/store-context";
 
-export const TodoTitle = ({ title, onUpdateTitle }) => {
+export default function ContextTodoTitle() {
+  const { todoTitle, updateTitle } = useStore();
   const inputRef = useRef();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const newTitle = inputRef.current.value;
     if (newTitle.trim()) {
-      onUpdateTitle(newTitle);
+      updateTitle(newTitle);
       inputRef.current.value = "";
     }
   };
@@ -22,17 +23,17 @@ export const TodoTitle = ({ title, onUpdateTitle }) => {
         border: "2px solid #007bff",
       }}
     >
-      <h2>{title}</h2>
-      <RenderCounter name="TodoTitle" />
+      <h2>{todoTitle}</h2>
+      <RenderCounter name="ContextTodoTitle" />
       <form onSubmit={handleSubmit} style={{ marginTop: "1rem" }}>
         <input
           ref={inputRef}
           type="text"
           placeholder="Change list title..."
-          style={{ padding: "0.5rem", marginRight: "0.5rem" }}
+          style={{ padding: "0.5rem", marginRight: "0.5rem", border: "1px solid #007bff" }}
         />
         <Button type="submit">Update Title</Button>
       </form>
     </div>
   );
-};
+}
