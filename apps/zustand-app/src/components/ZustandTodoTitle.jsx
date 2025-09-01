@@ -1,10 +1,8 @@
 import { useRef } from "react";
-import { RenderCounter } from "@repo/ui";
+import { RenderCounter,Button } from "@repo/ui";
 import { useStore } from "../stores/store-zustand";
 
-// This is a "smart" component that knows about the store
 export const ZustandTodoTitle = () => {
-  // This component only subscribes to the title
   const title = useStore((state) => state.todoTitle);
   const updateTitle = useStore((state) => state.updateTitle);
 
@@ -24,10 +22,10 @@ export const ZustandTodoTitle = () => {
       style={{
         marginBottom: "2rem",
         padding: "1rem",
-        border: "2px dashed #ccc",
+        border: "2px solid #007bff",
       }}
     >
-      <h2>Todo List: {title}</h2>
+      <h2>{title}</h2>
       <RenderCounter name="ZustandTodoTitle" />
       <form onSubmit={handleSubmit} style={{ marginTop: "1rem" }}>
         <input
@@ -36,7 +34,7 @@ export const ZustandTodoTitle = () => {
           placeholder="Change list title..."
           style={{ padding: "0.5rem", marginRight: "0.5rem" }}
         />
-        <button type="submit">Update Title</button>
+        <Button type="submit">Update Title</Button>
       </form>
     </div>
   );

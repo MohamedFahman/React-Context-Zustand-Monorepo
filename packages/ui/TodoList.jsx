@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { RenderCounter } from "./RenderCounter";
-import {TodoItem} from "./TodoItem";
+import { TodoItem } from "./TodoItem";
+import { Button } from "./Button";
 
 export const TodoList = ({
   items,
@@ -8,7 +9,7 @@ export const TodoList = ({
   onToggleItem,
   onDeleteItem,
   onEditItem,
-}) =>{
+}) => {
   const inputRef = useRef();
 
   const handleSubmit = (e) => {
@@ -21,7 +22,7 @@ export const TodoList = ({
   };
 
   return (
-    <div style={{ padding: "1rem", border: "2px solid #eee" }}>
+    <div style={{ padding: "1rem", border: "2px solid #007bff" }}>
       <h3>
         Todo Items ({items.filter((item) => !item.completed).length} remaining)
       </h3>
@@ -34,7 +35,7 @@ export const TodoList = ({
           placeholder="Add new todo item..."
           style={{ padding: "0.5rem", marginRight: "0.5rem", width: "300px" }}
         />
-        <button type="submit">Add Item</button>
+        <Button type="submit">Add Item</Button>
       </form>
 
       <div>
@@ -50,4 +51,4 @@ export const TodoList = ({
       </div>
     </div>
   );
-}
+};

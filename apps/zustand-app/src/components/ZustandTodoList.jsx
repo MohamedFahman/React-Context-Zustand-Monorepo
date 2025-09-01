@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { RenderCounter, TodoItem } from "@repo/ui";
+import { Button, RenderCounter } from "@repo/ui";
 import { useStore } from "../stores/store-zustand";
 import { ZustandTodoItem } from "./ZustandTodoItem";
 
@@ -24,7 +24,7 @@ export const ZustandTodoList = () => {
   };
 
   return (
-    <div style={{ padding: "1rem", border: "2px solid #eee" }}>
+    <div style={{ padding: "1rem", border: "2px solid #007bff" }}>
       <h3>
         Todo Items ({items.filter((item) => !item.completed).length} remaining)
       </h3>
@@ -37,7 +37,7 @@ export const ZustandTodoList = () => {
           placeholder="Add new todo item..."
           style={{ padding: "0.5rem", marginRight: "0.5rem", width: "300px" }}
         />
-        <button type="submit">Add Item</button>
+        <Button type="submit">Add Item</Button>
       </form>
 
       <div>

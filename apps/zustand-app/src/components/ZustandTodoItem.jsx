@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { RenderCounter } from "@repo/ui";
+import { RenderCounter, Button } from "@repo/ui";
 
 // We need a wrapper for TodoItem to make it "smart"
 export const ZustandTodoItem = ({ item, onToggle, onDelete, onEdit }) => {
@@ -25,7 +25,7 @@ export const ZustandTodoItem = ({ item, onToggle, onDelete, onEdit }) => {
       style={{
         padding: "0.5rem",
         margin: "0.5rem 0",
-        border: "1px solid #ddd",
+        border: "1px solid #007bff",
         backgroundColor: item.completed ? "#f0f0f0" : "white",
       }}
     >
@@ -45,8 +45,8 @@ export const ZustandTodoItem = ({ item, onToggle, onDelete, onEdit }) => {
               onChange={(e) => setEditText(e.target.value)}
               style={{ flex: 1, padding: "0.25rem" }}
             />
-            <button onClick={handleSave}>Save</button>
-            <button onClick={handleCancel}>Cancel</button>
+            <Button onClick={handleSave}>Save</Button>
+            <Button onClick={handleCancel}>Cancel</Button>
           </>
         ) : (
           <>
@@ -58,8 +58,8 @@ export const ZustandTodoItem = ({ item, onToggle, onDelete, onEdit }) => {
             >
               {item.text}
             </span>
-            <button onClick={() => setIsEditing(true)}>Edit</button>
-            <button onClick={() => onDelete(item.id)}>Delete</button>
+            <Button onClick={() => setIsEditing(true)}>Edit</Button>
+            <Button onClick={() => onDelete(item.id)}>Delete</Button>
           </>
         )}
       </div>

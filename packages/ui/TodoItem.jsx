@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import { RenderCounter } from "./RenderCounter";
+import { Button } from "./Button";
 
 export const TodoItem = ({ item, onToggle, onDelete, onEdit }) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -23,7 +24,7 @@ export const TodoItem = ({ item, onToggle, onDelete, onEdit }) => {
       style={{
         padding: "0.5rem",
         margin: "0.5rem 0",
-        border: "1px solid #ddd",
+        border: "1px solid #007bff",
         backgroundColor: item.completed ? "#f0f0f0" : "white",
       }}
     >
@@ -43,15 +44,15 @@ export const TodoItem = ({ item, onToggle, onDelete, onEdit }) => {
               onChange={(e) => setEditText(e.target.value)}
               style={{ flex: 1, padding: "0.25rem" }}
             />
-            <button onClick={handleSave} style={{ padding: "0.25rem 0.5rem" }}>
+            <Button onClick={handleSave} style={{ padding: "0.25rem 0.5rem" }}>
               Save
-            </button>
-            <button
+            </Button>
+            <Button
               onClick={handleCancel}
               style={{ padding: "0.25rem 0.5rem" }}
             >
               Cancel
-            </button>
+            </Button>
           </>
         ) : (
           <>
@@ -63,18 +64,18 @@ export const TodoItem = ({ item, onToggle, onDelete, onEdit }) => {
             >
               {item.text}
             </span>
-            <button
+            <Button
               onClick={() => setIsEditing(true)}
               style={{ padding: "0.25rem 0.5rem" }}
             >
               Edit
-            </button>
-            <button
+            </Button>
+            <Button
               onClick={() => onDelete(item.id)}
               style={{ padding: "0.25rem 0.5rem" }}
             >
               Delete
-            </button>
+            </Button>
           </>
         )}
       </div>

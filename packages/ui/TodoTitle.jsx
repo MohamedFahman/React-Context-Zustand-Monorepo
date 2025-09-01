@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { RenderCounter } from "./RenderCounter";
+import { Button } from "./Button";
 
 export const TodoTitle = ({ title, onUpdateTitle }) => {
   const inputRef = useRef();
@@ -18,10 +19,10 @@ export const TodoTitle = ({ title, onUpdateTitle }) => {
       style={{
         marginBottom: "2rem",
         padding: "1rem",
-        border: "2px dashed #ccc",
+        border: "2px solid #007bff",
       }}
     >
-      <h2>Todo List: {title}</h2>
+      <h2>{title}</h2>
       <RenderCounter name="TodoTitle" />
       <form onSubmit={handleSubmit} style={{ marginTop: "1rem" }}>
         <input
@@ -30,7 +31,7 @@ export const TodoTitle = ({ title, onUpdateTitle }) => {
           placeholder="Change list title..."
           style={{ padding: "0.5rem", marginRight: "0.5rem" }}
         />
-        <button type="submit">Update Title</button>
+        <Button type="submit">Update Title</Button>
       </form>
     </div>
   );
