@@ -1,14 +1,19 @@
 import { useRef, useState } from "react";
 import { RenderCounter, Button } from "@repo/ui";
+import { useStore } from "../stores/store-zustand";
 
-export const ZustandTodoItem = ({ item, onToggle, onDelete, onEdit }) => {
+export default function ZustandTodoItem({ item }) {
+  const toggleItem = useStore((state) => state.toggleItem);
+  const deleteItem = useStore((state) => state.deleteItem);
+  const editItem = useStore((state) => state.editItem);
+
   const [isEditing, setIsEditing] = useState(false);
   const [editText, setEditText] = useState(item.text);
   const inputRef = useRef();
 
   const handleSave = () => {
     if (editText.trim()) {
-      onEdit(item.id, editText);
+      editItem(item.id, editText);
       setIsEditing(false);
     }
   };
@@ -32,7 +37,7 @@ export const ZustandTodoItem = ({ item, onToggle, onDelete, onEdit }) => {
         <input
           type="checkbox"
           checked={item.completed}
-          onChange={() => onToggle(item.id)}
+          onChange={() => toggleItem(item.id)}
         />
 
         {isEditing ? (
@@ -57,7 +62,7 @@ export const ZustandTodoItem = ({ item, onToggle, onDelete, onEdit }) => {
               {item.text}
             </span>
             <Button onClick={() => setIsEditing(true)}>Edit</Button>
-            <Button onClick={() => onDelete(item.id)}>Delete</Button>
+            <Button onClick={() => deleteItem(item.id)}>Delete</Button>{" "}
           </>
         )}
       </div>

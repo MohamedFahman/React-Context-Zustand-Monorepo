@@ -1,15 +1,11 @@
 import { useRef } from "react";
 import { Button, RenderCounter } from "@repo/ui";
 import { useStore } from "../stores/store-zustand";
-import { ZustandTodoItem } from "./ZustandTodoItem";
+import ZustandTodoItem from "./ZustandTodoItem";
 
-export const ZustandTodoList = () => {
+export default function ZustandTodoList() {
   const items = useStore((state) => state.todoItems);
   const addItem = useStore((state) => state.addItem);
-  const toggleItem = useStore((state) => state.toggleItem);
-  const deleteItem = useStore((state) => state.deleteItem);
-  const editItem = useStore((state) => state.editItem);
-
   const inputRef = useRef();
 
   const handleSubmit = (e) => {
@@ -48,9 +44,6 @@ export const ZustandTodoList = () => {
           <ZustandTodoItem
             key={item.id}
             item={item}
-            onToggle={toggleItem}
-            onDelete={deleteItem}
-            onEdit={editItem}
           />
         ))}
       </div>

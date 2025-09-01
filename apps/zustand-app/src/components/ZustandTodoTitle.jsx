@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { RenderCounter, Button } from "@repo/ui";
 import { useStore } from "../stores/store-zustand";
 
-export const ZustandTodoTitle = () => {
+export default function ZustandTodoTitle() {
   const title = useStore((state) => state.todoTitle);
   const updateTitle = useStore((state) => state.updateTitle);
 

@@ -1,14 +1,17 @@
 import { useRef, useState } from "react";
 import { RenderCounter, Button } from "@repo/ui";
+import { useStore } from "../stores/store-context";
 
-export default function ContextTodoItem({ item, onToggle, onDelete, onEdit }) {
+export default function ContextTodoItem({ item }) {
+  const { toggleItem, deleteItem, editItem } = useStore();
+
   const [isEditing, setIsEditing] = useState(false);
   const [editText, setEditText] = useState(item.text);
   const inputRef = useRef();
 
   const handleSave = () => {
     if (editText.trim()) {
-      onEdit(item.id, editText);
+      editItem(item.id, editText);
       setIsEditing(false);
     }
   };
@@ -32,7 +35,7 @@ export default function ContextTodoItem({ item, onToggle, onDelete, onEdit }) {
         <input
           type="checkbox"
           checked={item.completed}
-          onChange={() => onToggle(item.id)}
+          onChange={() => toggleItem(item.id)}
         />
 
         {isEditing ? (
@@ -57,7 +60,7 @@ export default function ContextTodoItem({ item, onToggle, onDelete, onEdit }) {
               {item.text}
             </span>
             <Button onClick={() => setIsEditing(true)}>Edit</Button>
-            <Button onClick={() => onDelete(item.id)}>Delete</Button>
+            <Button onClick={() => deleteItem(item.id)}>Delete</Button>
           </>
         )}
       </div>
