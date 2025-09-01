@@ -4,7 +4,7 @@ import { useStore } from "../stores/store-context";
 import ContextTodoItem from "./ContextTodoItem";
 
 export default function ContextTodoList() {
-  const { todoItems, addItem, toggleItem, deleteItem, editItem } = useStore();
+  const { todoItems, addItem } = useStore();
   const inputRef = useRef();
 
   const handleSubmit = (e) => {
@@ -41,13 +41,7 @@ export default function ContextTodoList() {
 
       <div>
         {todoItems.map((item) => (
-          <ContextTodoItem
-            key={item.id}
-            item={item}
-            onToggle={toggleItem}
-            onDelete={deleteItem}
-            onEdit={editItem}
-          />
+          <ContextTodoItem key={item.id} item={item} />
         ))}
       </div>
     </div>
